@@ -1,5 +1,6 @@
 {
   "expo": {
+
     "name": "StickerSmash",
     "slug": "StickerSmash",
     "version": "1.0.0",
@@ -7,7 +8,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/original-037c46c02a3fa4b9fcc9304bc27fb6ad.gif",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
