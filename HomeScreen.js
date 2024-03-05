@@ -2,44 +2,45 @@ import * as React from 'react';
 import { TouchableOpacity, Image, View, StyleSheet, Linking, Animated } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import { Asset } from 'expo-asset';
+import { useNavigation } from '@react-navigation/native';
 
 const MyComponent = () => {
-  const [animatedValue] = React.useState(new Animated.Value(0)); // Initialize animated value with 0
-  const [showQuote, setShowQuote] = React.useState(false); // State to toggle quote visibility
-  const [quoteOpacity] = React.useState(new Animated.Value(0)); // Initialize opacity value with 0
+  const navigation = useNavigation();
+  const [animatedValue] = React.useState(new Animated.Value(0));
+  const [showQuote, setShowQuote] = React.useState(false);
+  const [quoteOpacity] = React.useState(new Animated.Value(0));
   const gif = Asset.fromModule(require('./assets/133361 (Original).gif')).uri;
   const coolQuote = "Never give up on the stock market, for even in its chaos lies opportunity.";
 
   React.useEffect(() => {
     Animated.timing(animatedValue, {
       toValue: 1,
-      duration: 1000, // Animation duration in milliseconds
-      useNativeDriver: true, // To improve performance
-    }).start(); // Start the animation
-  }, []); // Run the effect only once when component mounts
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
 
   const translateY = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [100, 0], // Starting position and ending position for animation
+    outputRange: [100, 0],
   });
 
   const handlePressFacebook = () => {
-    Linking.openURL('https://www.facebook.com/'); // Replace with your Facebook page ID
+    Linking.openURL('https://www.facebook.com/');
   };
 
   const handlePressInstagram = () => {
-    Linking.openURL('https://www.instagram.com/'); // Replace with your Instagram username
+    Linking.openURL('https://www.instagram.com/');
   };
 
   const handlePressWhatsapp = () => {
-    // WhatsApp doesn't have a direct launch intent, open chat with pre-filled message
     Linking.openURL('https://web.whatsapp.com/');
   };
 
   const toggleQuote = () => {
-    setShowQuote(!showQuote); // Toggle quote visibility
+    setShowQuote(!showQuote);
     Animated.timing(quoteOpacity, {
-      toValue: showQuote ? 0 : 1, // If quote is shown, fade out; otherwise fade in
+      toValue: showQuote ? 0 : 1,
       duration: 500,
       useNativeDriver: true,
     }).start();
@@ -53,7 +54,7 @@ const MyComponent = () => {
     }).start();
     setTimeout(() => {
       fadeOutQuote();
-    }, 3000); // Fade out after 3 seconds
+    }, 3000);
   };
 
   const fadeOutQuote = () => {
@@ -67,7 +68,7 @@ const MyComponent = () => {
   return (
     <View style={{ marginTop: 50, backgroundColor:'#E6EBF9' }}>
       <Animated.View style={{ transform: [{ translateY }] }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('CoinsScreen')}>
           <Card style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
@@ -79,7 +80,7 @@ const MyComponent = () => {
           </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('CurrencyScreen')}>
           <Card style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
@@ -90,10 +91,22 @@ const MyComponent = () => {
             <Text style={styles.coinsText}>CURRENCIES</Text>
           </Card>
         </TouchableOpacity>
-    
+
+        <TouchableOpacity onPress={() => navigation.navigate('FavoriesScreen')}>
+          <Card style={styles.container}>
+            <View style={styles.imageContainer}>
+              <Image
+                source={require('./assets/icons8-favorites-48.png')}
+                style={styles.image}
+              />
+            </View>
+            <Text style={styles.coinsText}>FAVORIES</Text>
+          </Card>
+        </TouchableOpacity>
+
         <Image
           source={{ uri: gif }}
-          style={{ width: 400, height: 300 }}
+          style={{ width: 400, height: 185 }}
           resizeMode="contain"
         />
       
@@ -106,12 +119,12 @@ const MyComponent = () => {
         <Animated.View style={{ opacity: quoteOpacity }}>
           <Text style={styles.coolQuote}>{coolQuote}</Text>
         </Animated.View>
-        {/* Social media sharing section */}
+        
         <View style={styles.shareContainer}>
-        <Text style={{fontSize:20}}>Share</Text> 
-        <Text style={{fontSize:20, color:"red"}}>Us!</Text>
-        <Text style={{marginTop:25, fontSize:20}}>Support</Text>
-        <Text style={{marginTop:25,fontSize:20, color:"red"}}>Us!</Text>
+          <Text style={{fontSize:20}}>Share</Text> 
+          <Text style={{fontSize:20, color:"red"}}>Us!</Text>
+          <Text style={{marginTop:25, fontSize:20}}>Support</Text>
+          <Text style={{marginTop:25,fontSize:20, color:"red"}}>Us!</Text>
         
           <TouchableOpacity onPress={handlePressFacebook}>
             <Image
@@ -132,12 +145,6 @@ const MyComponent = () => {
             />
           </TouchableOpacity>
         </View>
-
-        {/* "Support Us" text */}
-       
-
-        {/* Conditional rendering of the cool quote */}
-       
       </Animated.View>
     </View>
   );
@@ -181,7 +188,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'black', // Customize color if needed
+    color: 'black',
   },
 });
 

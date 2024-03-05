@@ -1,12 +1,16 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image,View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-
+import CurrencyScreen from './CurrencyScreen';
 import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
-import NewsScreen from './NewsScreen'
+import NewsScreen from './NewsScreen';
+import CoinsScreen from './coinsScreen';
+import FavoriesScreen from './FavoriesScreen';
 const Tab = createBottomTabNavigator();
+
+
 
 
 export default function App() {
@@ -46,16 +50,41 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{ headerShown: false }}
+          name="CurrencyScreen"
+          component={CurrencyScreen}
+          options={{ headerShown: false , tabBarButton: () => (
+            <View style={{width:0, height:0}}></View>),
+          tabBarVisible:false}}
+      
         />
         <Tab.Screen
           name="News"
           component={NewsScreen}
           options={{ headerShown: false }}
         />
+        <Tab.Screen
+          name="CoinsScreen"
+          component={CoinsScreen}
+          options={{ headerShown: false , tabBarButton: () => (
+            <View style={{width:0, height:0}}></View>
+        ),
+        tabBarVisible:false}}
+        />
+        <Tab.Screen
+          name="FavoriesScreen"
+          component={FavoriesScreen}
+          options={{ headerShown: false , tabBarButton: () => (
+            <View style={{width:0, height:0}}></View>
+        ),
+        tabBarVisible:false}}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ headerShown: false  }}
+        />
       </Tab.Navigator>
+      
     </NavigationContainer>
   );
 }
