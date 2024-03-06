@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { TouchableOpacity, Image, View, StyleSheet, Linking, Animated } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, Image, View, StyleSheet, Linking, Animated} from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import { Asset } from 'expo-asset';
 import { useNavigation } from '@react-navigation/native';
-
+import CustomText from './functions/CustomText'; // Yeni bileşeni içe aktarın
 const MyComponent = () => {
   const navigation = useNavigation();
   const [animatedValue] = React.useState(new Animated.Value(0));
   const [showQuote, setShowQuote] = React.useState(false);
   const [quoteOpacity] = React.useState(new Animated.Value(0));
-  const gif = Asset.fromModule(require('./assets/133361 (Original).gif')).uri;
+  
   const coolQuote = "Never give up on the stock market, for even in its chaos lies opportunity.";
 
   React.useEffect(() => {
@@ -76,7 +76,7 @@ const MyComponent = () => {
                 style={styles.image}
               />
             </View>
-            <Text style={styles.coinsText}>COINS</Text>
+            <Text style={styles.coinsText}>CRYPTOCURRENCY</Text>
           </Card>
         </TouchableOpacity>
 
@@ -104,11 +104,11 @@ const MyComponent = () => {
           </Card>
         </TouchableOpacity>
 
-        <Image
-          source={{ uri: gif }}
-          style={{ width: 400, height: 185 }}
-          resizeMode="contain"
-        />
+        <CustomText style={styles.Headertext}>
+          The most reliable & comprehensive <CustomText style={{color: 'blue'}}>cryptocurrency market app</CustomText> for traders
+        </CustomText>
+        
+
       
         <TouchableOpacity onPress={toggleQuote}>
           <Image
@@ -157,6 +157,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginTop: 10,
+  },
+  Headertext:
+  {
+    marginBottom:20,
+    marginLeft:20,
+    marginTop:20,
+  fontSize:25,
   },
   imageContainer: {
     alignItems: 'center',

@@ -76,7 +76,7 @@ const NewsScreen = () => {
           <Card key={index}>
             {item.image ? <Card.Cover source={{ uri: item.image }} /> : null}
             <Card.Content>
-              <View style={{ backgroundColor: '#f04f0f0', padding: 16, borderRadius: 8 }}>
+              <View style={{ backgroundColor:'#E6EBF9', padding: 16, borderRadius: 8 }}>
                 <Text variant="titleLarge" style={{margin:10}}>{item.title}</Text>
                 <Text variant="bodyMedium">{item.content}</Text>
                 <Text variant="titleSmall" style={{ color: 'gray', left: 170, bottom: -10 }}>
