@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/original-037c46c02a3fa4b9fcc9304bc27fb6ad.gif",
+      "image": "./assets/original-037c46c02a3fa4b9fcc9304bc27fb6ad.mp4",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -27,7 +27,10 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      {
+        "fonts": ["./assets/fonts/BebasNeue-Regular.ttf"]
+      }
     ]
   }
 }

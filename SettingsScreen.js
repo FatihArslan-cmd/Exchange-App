@@ -6,9 +6,9 @@ const FAQ = () => {
  
 
   const faqList = [
-    { question: 'React Native nedir?', answer: 'React Native, Facebook tarafından geliştirilen açık kaynaklı bir mobil uygulama çerçevesidir. JavaScript ve React kullanılarak iOS ve Android için native mobil uygulamalar geliştirmek için kullanılır.' },
-    { question: 'React Nativei nasıl öğrenebilirim?', answer: 'React Native öğrenmek için temel JavaScript ve React bilgisine ihtiyacınız vardır. Ayrıca, React Nativein resmi belgelerini takip ederek ve örnek projeler üzerinde pratik yaparak becerilerinizi geliştirebilirsiniz.' },
-    { question: 'React Native performansı nasıldır?', answer: 'React Native, platforma özgü bileşenlerle birleştirilmiş JavaScript kodunu çalıştırır. Doğru yapılandırıldığında ve optimize edildiğinde iyi performans gösterebilir, ancak karmaşık uygulamalarda performans sorunları yaşanabilir.' },
+    { question: 'What is the aim of the APP', answer: 'Transmit real-time data to users with great accuracy.' },
+    { question: 'Will there be more language support?', answer: 'As the community expands,We will eagerly expand the variety of languages.' },
+    { question: 'Which programing language has been used to develop?', answer: 'React Native is the language that has been used.' },
     // Ek sıkça sorulan soruları buraya ekleyebilirsiniz
   ];
 
@@ -41,11 +41,12 @@ const FAQ = () => {
       <Image 
       source={require('./assets/icons8-arrow-64.png')} 
       style={{ borderRadius: 10 }}
-    />
+       />
       <TouchableOpacity onPress={handlePressGmail}>
           <Image source={require('./assets/try.png')} style={styles.contactIcon} />
         </TouchableOpacity>
        </View>
+
       <View style={styles.contactContainer}>
         <CustomText fontFamily="bungee" style={styles.contactText}>CONTACT ME VIA</CustomText>
         <Image source={require('./assets/icons8-arrow-64.png')} style={styles.contactIcon} />
@@ -57,17 +58,17 @@ const FAQ = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.frame}>
-        <Text style={styles.title}>FAQ - v{packageJson.version}</Text>
+        <CustomText style={styles.title}>FAQ - v{packageJson.version}</CustomText>
         {faqList.map((faq, index) => (
           <TouchableOpacity key={index} onPress={() => toggleQuestion(index)} style={styles.faqItem}>
-            <Text style={styles.question}>{faq.question}</Text>
+            <CustomText style={styles.question}>{faq.question}</CustomText>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               {selectedQuestion === index && expanded && <Text style={styles.answer}>{faq.answer}</Text>}
             </View>
           </TouchableOpacity>
         ))}
       </View>
-      <Text style={{fontSize: 16,
+      <Text style={{fontSize: 12,
                     fontWeight: 'bold',
                     color: 'gray',
                     textAlign:'center' }}>
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#E6EBF9',
   },
   frame: {
+    backgroundColor:"white",
     borderWidth: 3,
     borderRadius: 10,
     borderColor: '#ccc',
@@ -91,8 +93,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 25,
     marginBottom: 10,
   },
   faqItem: {
@@ -104,7 +105,8 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
   },
   question: {
-    fontWeight: 'bold',
+    
+    fontSize:15,
     marginBottom: 5,
   },
   answer: {

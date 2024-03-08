@@ -10,7 +10,7 @@ const MyComponent = () => {
   const [showQuote, setShowQuote] = React.useState(false);
   const [quoteOpacity] = React.useState(new Animated.Value(0));
   
-  const coolQuote = "Never give up on the stock market, for even in its chaos lies opportunity.";
+  
 
   React.useEffect(() => {
     Animated.timing(animatedValue, {
@@ -76,7 +76,7 @@ const MyComponent = () => {
                 style={styles.image}
               />
             </View>
-            <Text style={styles.coinsText}>CRYPTOCURRENCY</Text>
+            <CustomText style={styles.coinsText}>CRYPTOCURRENCY</CustomText>
           </Card>
         </TouchableOpacity>
 
@@ -88,7 +88,7 @@ const MyComponent = () => {
                 style={styles.image}
               />
             </View>
-            <Text style={styles.coinsText}>CURRENCIES</Text>
+            <CustomText style={styles.coinsText}>CURRENCIES</CustomText>
           </Card>
         </TouchableOpacity>
 
@@ -100,7 +100,7 @@ const MyComponent = () => {
                 style={styles.image}
               />
             </View>
-            <Text style={styles.coinsText}>FAVORIES</Text>
+            <CustomText style={styles.coinsText}>FAVORIES</CustomText>
           </Card>
         </TouchableOpacity>
 
@@ -117,14 +117,18 @@ const MyComponent = () => {
         </TouchableOpacity>
          
         <Animated.View style={{ opacity: quoteOpacity }}>
-          <Text style={styles.coolQuote}>{coolQuote}</Text>
+          <CustomText style={styles.coolQuote}>Never  
+          <CustomText style={{color: 'red'}}> give up </CustomText> 
+           on the stock market, for even in its chaos lies 
+          <CustomText style={{color: 'gold'}}> opportunity.</CustomText>
+          </CustomText>
         </Animated.View>
         
         <View style={styles.shareContainer}>
-          <Text style={{fontSize:20}}>Share</Text> 
-          <Text style={{fontSize:20, color:"red"}}>Us!</Text>
-          <Text style={{marginTop:25, fontSize:20}}>Support</Text>
-          <Text style={{marginTop:25,fontSize:20, color:"red"}}>Us!</Text>
+          <CustomText style={{fontSize:20}}>Share</CustomText> 
+          <CustomText style={{fontSize:20, color:"red"}}>Us!</CustomText>
+          <CustomText style={{marginTop:25, fontSize:20}}>Support</CustomText>
+          <CustomText style={{marginTop:25,fontSize:20, color:"red"}}>Us!</CustomText>
         
           <TouchableOpacity onPress={handlePressFacebook}>
             <Image
@@ -177,12 +181,12 @@ const styles = StyleSheet.create({
   coinsText: {
     marginTop: 10,
     fontSize: 16,
-    fontWeight: 'bold',
+    
   },
   shareContainer: {
+    marginLeft:3,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 30,
     backgroundColor: '#e1e3e1',
   },
   shareIcon: {
@@ -193,7 +197,6 @@ const styles = StyleSheet.create({
   coolQuote: {
     marginTop: 20,
     fontSize: 18,
-    fontWeight: 'bold',
     textAlign: 'center',
     color: 'black',
   },

@@ -40,7 +40,7 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'blue',
+          activeTintColor: 'black',
           inactiveTintColor: 'gray',
         }}
       >
@@ -60,7 +60,7 @@ export default function App() {
         <Tab.Screen
           name="News"
           component={NewsScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false  }}
         />
         <Tab.Screen
           name="CoinsScreen"
@@ -68,7 +68,7 @@ export default function App() {
           options={{ headerShown: false , tabBarButton: () => (
             <View style={{width:0, height:0}}></View>
         ),
-        tabBarVisible:false}}
+              tabBarVisible:false}}
         />
         <Tab.Screen
           name="FavoriesScreen"
