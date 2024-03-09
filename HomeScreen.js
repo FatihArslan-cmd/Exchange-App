@@ -66,7 +66,7 @@ const MyComponent = () => {
   };
 
   return (
-    <View style={{ marginTop: 50, backgroundColor:'#E6EBF9' }}>
+    <View style={{ marginTop: 50, backgroundColor:'#E6EBF9',flex:1 }}>
       <Animated.View style={{ transform: [{ translateY }] }}>
         <TouchableOpacity onPress={() => navigation.navigate('CoinsScreen')}>
           <Card style={styles.container}>

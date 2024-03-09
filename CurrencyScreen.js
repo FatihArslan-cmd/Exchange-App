@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
 import CustomText from './functions/CustomText';
-import { Button } from 'react-native-paper';
+
 
 
 const ExchangeRates = () => {
@@ -53,7 +53,7 @@ const ExchangeRates = () => {
   );
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1,margin:15 }}>
       <View style={{ flex: 1, marginTop: 30 }}>
         <CustomText style={styles.title}>Exchange</CustomText>
         {lastUpdated && <CustomText style={styles.lastUpdated}>Last update: {lastUpdated.toLocaleString()}</CustomText>}
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 30,
+    width: 38,
     height: 30,
     marginRight: 10,
   },

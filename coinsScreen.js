@@ -5,7 +5,6 @@ import CustomText from './functions/CustomText';
 
 const CryptoScreen = () => {
   const [cryptos, setCryptos] = useState([]);
-
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -28,28 +27,19 @@ const CryptoScreen = () => {
   );
 
   const renderItem = ({ item }) => {
-     if (!item.image) {
-      return (
-
-        <View style={styles.item}>
-          <CustomText style={styles.title}>{item.name}</CustomText>
-          <Text style={styles.subtitle}>Price: ${item.current_price}</Text>
-          <Text style={styles.subtitle}>Market Cap: ${item.market_cap}</Text>
-          <Text style={styles.subtitle}>Image not available</Text>
-        </View>
-      );
-    }
     return (
-
       <View style={styles.item}>
         <CustomText style={styles.title}>{item.name}</CustomText>
-        <Image
-          source={{ uri: item.image }}
-          style={{ width: 60, height: 60, marginLeft:75,margin:5 }}
-        />
+        {item.image && (
+          <Image
+            source={{ uri: item.image }}
+            style={{ width: 60, height: 60, marginLeft: 75, margin: 5 }}
+          />
+        )}
+        {!item.image && <Text style={styles.subtitle}>Image not available</Text>}
         <Text style={styles.subtitle}>Price: ${item.current_price}</Text>
-        <Text style={styles.subtitle}>High Day: ${item.high_24h}</Text>
-        <Text style={styles.subtitle}>Low Day: ${item.low_24h}</Text>
+        {item.high_24h && <Text style={styles.subtitle}>High Day: ${item.high_24h}</Text>}
+        {item.low_24h && <Text style={styles.subtitle}>Low Day: ${item.low_24h}</Text>}
         <Text style={styles.subtitle}>Market Cap: ${item.market_cap}</Text>
       </View>
     );
