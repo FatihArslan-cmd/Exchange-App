@@ -57,7 +57,7 @@ api.coingecko.com
 
 Contribution
 If you would like to contribute to this project, please create a GitHub issue to share suggestions, bugs or requests. You can also fork this repository to make your improvements and submit pull requests.
-![Screenshot_1710067675](https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/94aa8ed9-705d-4c70-940b-a5b502e5aedc)
-![Screenshot_1710067680](https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/9c086263-ff3e-4e0a-885d-6ee08dcee1fc)
-![Screenshot_1710067685](https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/69be8984-4be8-4862-89f7-cbe855c92d2d)
-![Screenshot_1710067687](https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/bf55a309-e136-4480-9cef-821aa97863e9)
+https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/94aa8ed9-705d-4c70-940b-a5b502e5aedc
+https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/9c086263-ff3e-4e0a-885d-6ee08dcee1fc
+https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/69be8984-4be8-4862-89f7-cbe855c92d2d
+https://github.com/FatihArslan-cmd/Exchange-App/assets/122049858/bf55a309-e136-4480-9cef-821aa97863e9
