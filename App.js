@@ -2,12 +2,12 @@ import React from 'react';
 import { Image, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import CurrencyScreen from './CurrencyScreen';
-import HomeScreen from './HomeScreen';
-import SettingsScreen from './SettingsScreen';
-import NewsScreen from './NewsScreen';
-import CoinsScreen from './coinsScreen';
-import FavoriesScreen from './FavoriesScreen';
+import CurrencyScreen from './Screens/CurrencyScreen';
+import HomeScreen from './Screens/HomeScreen';
+import SettingsScreen from './Screens/SettingsScreen';
+import NewsScreen from './Screens/NewsScreen';
+import CoinsScreen from './Screens/coinsScreen';
+import FavoriesScreen from './Screens/FavoriesScreen';
 
 const Tab = createBottomTabNavigator();
 

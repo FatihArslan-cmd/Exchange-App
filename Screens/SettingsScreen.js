@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import CustomText from './functions/CustomText';
+import CustomText from '../functions/CustomText';
 
 const FAQ = () => {
  
@@ -32,29 +32,29 @@ const FAQ = () => {
   const handlePressGmail = () => {
     Linking.openURL('mailto:fatih.arslan12@ogr.sakarya.edu.tr');
   };
-  const packageJson = require('./package.json');
+  const packageJson = require('../package.json');
   const version = packageJson.version;
   return (
     <ScrollView style={styles.container}>
        <View style={{marginTop:50, flexDirection: 'row',}}>
       <CustomText fontFamily="bungee"style={styles.contactText}>CHANGE LANG</CustomText>
       <Image 
-      source={require('./assets/icons8-arrow-64.png')} 
+      source={require('../assets/icons8-arrow-64.png')} 
       style={{ borderRadius: 10 }}
        />
       <TouchableOpacity onPress={handlePressGmail}>
-          <Image source={require('./assets/try.png')} style={styles.contactIcon} />
+          <Image source={require('../assets/try.png')} style={styles.contactIcon} />
         </TouchableOpacity>
        </View>
 
       <View style={styles.contactContainer}>
         <CustomText fontFamily="bungee" style={styles.contactText}>CONTACT ME VIA</CustomText>
-        <Image source={require('./assets/icons8-arrow-64.png')} style={styles.contactIcon} />
+        <Image source={require('../assets/icons8-arrow-64.png')} style={styles.contactIcon} />
         <TouchableOpacity onPress={handlePressLinkedin}>
-          <Image source={require('./assets/icons8-linkedin-48.png')} style={styles.contactIcon} />
+          <Image source={require('../assets/icons8-linkedin-48.png')} style={styles.contactIcon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={handlePressGmail}>
-          <Image source={require('./assets/new.png')} style={styles.contactIcon} />
+          <Image source={require('../assets/new.png')} style={styles.contactIcon} />
         </TouchableOpacity>
       </View>
       <View style={styles.frame}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native';
-import CustomText from './functions/CustomText';
+import CustomText from '../functions/CustomText';
 
 
 
@@ -11,17 +11,17 @@ const ExchangeRates = () => {
   const [loading, setLoading] = useState(true); // State for loading indicator
 
   const currencies = [
-    { code: 'TRY', name: 'Turkish lira', image: require('./assets/try.png') },
-    { code: 'AZN', name: 'Azerbaijan Manat', image: require('./assets/azn.jpg') },
-    { code: 'EUR', name: 'Euro', image: require('./assets/eur.png') }, // Euro
-    { code: 'GBP', name: 'British Pound', image: require('./assets/gbp.png') }, // British Pound
-    { code: 'JPY', name: 'Japanese Yen', image: require('./assets/jpy.png') }, // Japanese Yen
-    { code: 'AUD', name: 'Australian Dollar', image: require('./assets/aud.png') }, // Australian Dollar
-    { code: 'CAD', name: 'Canadian Dollar', image: require('./assets/cad.jpg') }, // Canadian Dollar
-    { code: 'CHF', name: 'Swiss Franc', image: require('./assets/chf.png') }, // Swiss Franc
-    { code: 'CNY', name: 'Chinese Yuan', image: require('./assets/cny.png') }, // Chinese Yuan
-    { code: 'INR', name: 'Indian Rupee', image: require('./assets/inr.png') }, // Indian Rupee
-    { code: 'RUB', name: 'Russian Ruble', image: require('./assets/rub.png') }, // Russian Ruble
+    { code: 'TRY', name: 'Turkish lira', image: require('../assets/try.png') },
+    { code: 'AZN', name: 'Azerbaijan Manat', image: require('../assets/azn.jpg') },
+    { code: 'EUR', name: 'Euro', image: require('../assets/eur.png') }, // Euro
+    { code: 'GBP', name: 'British Pound', image: require('../assets/gbp.png') }, // British Pound
+    { code: 'JPY', name: 'Japanese Yen', image: require('../assets/jpy.png') }, // Japanese Yen
+    { code: 'AUD', name: 'Australian Dollar', image: require('../assets/aud.png') }, // Australian Dollar
+    { code: 'CAD', name: 'Canadian Dollar', image: require('../assets/cad.jpg') }, // Canadian Dollar
+    { code: 'CHF', name: 'Swiss Franc', image: require('../assets/chf.png') }, // Swiss Franc
+    { code: 'CNY', name: 'Chinese Yuan', image: require('../assets/cny.png') }, // Chinese Yuan
+    { code: 'INR', name: 'Indian Rupee', image: require('../assets/inr.png') }, // Indian Rupee
+    { code: 'RUB', name: 'Russian Ruble', image: require('../assets/rub.png') }, // Russian Ruble
   ];
 
   useEffect(() => {

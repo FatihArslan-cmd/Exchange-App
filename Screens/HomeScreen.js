@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, Image, View, StyleSheet, Linking, Animated} from 'react-native';
-import { Card, Text } from 'react-native-paper';
-import { Asset } from 'expo-asset';
+import { Card } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import CustomText from './functions/CustomText'; // Yeni bileşeni içe aktarın
+import CustomText from '../functions/CustomText'; 
+
+
+
 const MyComponent = () => {
   const navigation = useNavigation();
   const [animatedValue] = React.useState(new Animated.Value(0));
   const [showQuote, setShowQuote] = React.useState(false);
   const [quoteOpacity] = React.useState(new Animated.Value(0));
   
-  
-
   React.useEffect(() => {
     Animated.timing(animatedValue, {
       toValue: 1,
@@ -72,7 +72,7 @@ const MyComponent = () => {
           <Card style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
-                source={require('./assets/icons8-bitcoin-48.png')}
+                source={require('../assets/icons8-bitcoin-48.png')}
                 style={styles.image}
               />
             </View>
@@ -84,7 +84,7 @@ const MyComponent = () => {
           <Card style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
-                source={require('./assets/icons8-currency-50.png')}
+                source={require('../assets/icons8-currency-50.png')}
                 style={styles.image}
               />
             </View>
@@ -96,7 +96,7 @@ const MyComponent = () => {
           <Card style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
-                source={require('./assets/icons8-favorites-48.png')}
+                source={require('../assets/icons8-favorites-48.png')}
                 style={styles.image}
               />
             </View>
@@ -112,7 +112,7 @@ const MyComponent = () => {
       
         <TouchableOpacity onPress={toggleQuote}>
           <Image
-            source={require('./assets/icons8-easter-egg-48.png')}
+            source={require('../assets/icons8-easter-egg-48.png')}
           />
         </TouchableOpacity>
          
@@ -132,19 +132,19 @@ const MyComponent = () => {
         
           <TouchableOpacity onPress={handlePressFacebook}>
             <Image
-              source={require('./assets/icons8-facebook-48.png')}
+              source={require('../assets/icons8-facebook-48.png')}
               style={styles.shareIcon}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={handlePressInstagram}>
             <Image
-              source={require('./assets/icons8-instagram-48.png')}
+              source={require('../assets/icons8-instagram-48.png')}
               style={styles.shareIcon}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={handlePressWhatsapp}>
             <Image
-              source={require('./assets/icons8-whatsapp-48.png')}
+              source={require('../assets/icons8-whatsapp-48.png')}
               style={styles.shareIcon}
             />
           </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TextInput, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import axios from 'axios';
-import CustomText from './functions/CustomText';
+import CustomText from '../functions/CustomText';
 
 const CryptoScreen = () => {
   const [cryptos, setCryptos] = useState([]);
