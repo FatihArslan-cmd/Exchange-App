@@ -6,7 +6,7 @@ import CurrencyScreen from './Screens/CurrencyScreen';
 import HomeScreen from './Screens/HomeScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import NewsScreen from './Screens/NewsScreen';
-import CoinsScreen from './Screens/coinsScreen';
+import CoinsScreen from './Screens/CoinsScreen';
 import FavoriesScreen from './Screens/FavoriesScreen';
 
 const Tab = createBottomTabNavigator();
