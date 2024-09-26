@@ -1,21 +1,25 @@
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Image, Linking, LayoutAnimation, Platform, UIManager } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import CustomText from '../functions/CustomText';
 
-const FAQ = () => {
- 
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 
+const FAQ = () => {
   const faqList = [
     { question: 'What is the aim of the APP', answer: 'Transmit real-time data to users with great accuracy.' },
-    { question: 'Will there be more language support?', answer: 'As the community expands,We will eagerly expand the variety of languages.' },
-    { question: 'Which programing language has been used to develop?', answer: 'React Native is the language that has been used.' },
-    // Ek sıkça sorulan soruları buraya ekleyebilirsiniz
+    { question: 'Will there be more language support?', answer: 'As the community expands, we will eagerly expand the variety of languages.' },
+    { question: 'Which programming language has been used to develop?', answer: 'React Native is the language that has been used.' },
   ];
 
-  const [expanded, setExpanded] = React.useState(false);
-  const [selectedQuestion, setSelectedQuestion] = React.useState(null);
+  const [expanded, setExpanded] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const toggleQuestion = (index) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     if (selectedQuestion === index) {
       setExpanded(false);
       setSelectedQuestion(null);
@@ -32,24 +36,23 @@ const FAQ = () => {
   const handlePressGmail = () => {
     Linking.openURL('mailto:fatih.arslan12@ogr.sakarya.edu.tr');
   };
+
   const packageJson = require('../package.json');
-  const version = packageJson.version;
+
   return (
     <ScrollView style={styles.container}>
-       <View style={{marginTop:50, flexDirection: 'row',}}>
-      <CustomText fontFamily="bungee"style={styles.contactText}>CHANGE LANG</CustomText>
-      <Image 
-      source={require('../assets/icons8-arrow-64.png')} 
-      style={{ borderRadius: 10 }}
-       />
-      <TouchableOpacity onPress={handlePressGmail}>
+      {/* Language Change Section */}
+      <View style={styles.header}>
+        <CustomText fontFamily="bungee" style={styles.languageText}>CHANGE LANG</CustomText>
+        <Image source={require('../assets/icons8-arrow-64.png')} style={styles.arrowIcon} />
+        <TouchableOpacity onPress={handlePressGmail}>
           <Image source={require('../assets/try.png')} style={styles.contactIcon} />
         </TouchableOpacity>
-       </View>
+      </View>
 
+      {/* Contact Section */}
       <View style={styles.contactContainer}>
         <CustomText fontFamily="bungee" style={styles.contactText}>CONTACT ME VIA</CustomText>
-        <Image source={require('../assets/icons8-arrow-64.png')} style={styles.contactIcon} />
         <TouchableOpacity onPress={handlePressLinkedin}>
           <Image source={require('../assets/icons8-linkedin-48.png')} style={styles.contactIcon} />
         </TouchableOpacity>
@@ -57,22 +60,20 @@ const FAQ = () => {
           <Image source={require('../assets/new.png')} style={styles.contactIcon} />
         </TouchableOpacity>
       </View>
+
+      {/* FAQ Section */}
       <View style={styles.frame}>
-        <CustomText style={styles.title}>FAQ - v{packageJson.version}</CustomText>
+        <CustomText fontFamily="bungee" style={styles.title}>FAQ - v{packageJson.version}</CustomText>
         {faqList.map((faq, index) => (
           <TouchableOpacity key={index} onPress={() => toggleQuestion(index)} style={styles.faqItem}>
             <CustomText style={styles.question}>{faq.question}</CustomText>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              {selectedQuestion === index && expanded && <Text style={styles.answer}>{faq.answer}</Text>}
-            </View>
+            {selectedQuestion === index && expanded && <Text style={styles.answer}>{faq.answer}</Text>}
           </TouchableOpacity>
         ))}
       </View>
-      <Text style={{fontSize: 12,
-                    fontWeight: 'bold',
-                    color: 'gray',
-                    textAlign:'center' }}>
-                    All Rights Reserved © 2024</Text>
+
+      {/* Footer */}
+      <Text style={styles.footer}>All Rights Reserved © 2024</Text>
     </ScrollView>
   );
 };
@@ -81,60 +82,83 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    marginTop: 20,
-    backgroundColor:'#E6EBF9',
+    backgroundColor: '#F9FAFB',
   },
-  frame: {
-    backgroundColor:"white",
-    borderWidth: 3,
-    borderRadius: 10,
-    borderColor: '#ccc',
-    padding: 5,
+  header: {
+    flexDirection: 'row',
+    marginTop: 50,
+    alignItems: 'center',
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 25,
-    marginBottom: 10,
-  },
-  faqItem: {
-    marginBottom: 10,
-    backgroundColor:'#E6EBF9',
+  languageText: {
+    fontSize: 18,
     padding: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#F97316',
+    borderWidth: 2,
+    borderRadius: 8,
+    textAlign: 'center',
+    color: '#111827',
   },
-  question: {
-    
-    fontSize:15,
-    marginBottom: 5,
-  },
-  answer: {
-    marginLeft: 10,
+  arrowIcon: {
+    width: 24,
+    height: 24,
+    marginHorizontal: 8,
   },
   contactContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 60,
-    marginBottom:60,
+    alignItems: 'center',
+    marginVertical: 30,
   },
   contactText: {
-    borderWidth: 3,
-    borderRadius: 100,
-    borderColor: 'orange',
-    padding: 15,
-    fontSize: 15,
-    maxWidth: 160,
-    maxHeight: 50,
-    textAlign: 'center',
-    marginLeft: 10,
-    fontFamily:'pop2',
+    fontSize: 18,
+    color: '#F97316',
   },
   contactIcon: {
-    width: 60,
-    height: 60,
-    marginLeft: 10,
+    width: 50,
+    height: 50,
+    marginHorizontal: 10,
+  },
+  frame: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    elevation: 4,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#1F2937',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  faqItem: {
+    backgroundColor: '#E5E7EB',
+    padding: 15,
+    borderRadius: 8,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+  },
+  question: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#111827',
+  },
+  answer: {
+    marginTop: 10,
+    fontSize: 14,
+    color: '#4B5563',
+  },
+  footer: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 

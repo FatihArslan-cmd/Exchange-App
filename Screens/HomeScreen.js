@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     marginLeft:3,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#e1e3e1',
+    backgroundColor: '#E6EBF9',
   },
   shareIcon: {
     width: 60,

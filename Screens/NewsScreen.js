@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
-import { Card, Text } from 'react-native-paper';
-import { View, ScrollView, TextInput, Image } from 'react-native';
+import { Card, TextInput, Text, useTheme } from 'react-native-paper';
+import { View, ScrollView, Image, StyleSheet, Dimensions } from 'react-native';
 import moment from 'moment';
 import CustomText from '../functions/CustomText';
 import newsData from '../news/newsdata.json'; // Import the JSON file
 
+const { width } = Dimensions.get('window');
+
 const NewsScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const theme = useTheme();
 
-  const filteredNewsData = newsData.filter(item => {
-    return item.title.toLowerCase().includes(searchQuery.toLowerCase());
-  });
+  const filteredNewsData = newsData.filter(item =>
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderNewsItem = (item, index) => (
-    <Card key={index}>
-      {item.image ? <Card.Cover source={{ uri: item.image }} /> : null}
-      <Card.Content>
-        <View style={{ backgroundColor: '#E6EBF9', padding: 16, borderRadius: 8 }}>
-          <CustomText style={{ fontSize: 24, margin: 10 }}>{item.title}</CustomText>
-          <Text variant="bodyMedium">{item.content}</Text>
-          <Text variant="titleSmall" style={{ color: 'gray', left: 170, bottom: -10 }}>
-            Added {formatDate(item.addedDate)}
-          </Text>
-          <Text variant="titleSmall" style={{ color: 'gray', left: 20, bottom: 10 }}>
-            {item.source}
-          </Text>
+    <Card key={index} style={styles.card}>
+      {item.image ? <Card.Cover source={{ uri: item.image }} style={styles.image} /> : null}
+      <Card.Content style={styles.cardContent}>
+        <CustomText style={styles.title}>{item.title}</CustomText>
+        <Text style={styles.content}>{item.content}</Text>
+        <View style={styles.footer}>
+          <Text style={styles.date}>{formatDate(item.addedDate)}</Text>
+          <Text style={styles.source}>{item.source}</Text>
         </View>
       </Card.Content>
     </Card>
@@ -34,46 +33,111 @@ const NewsScreen = () => {
     const currentDate = moment();
     const hoursSinceAdded = currentDate.diff(moment(addedDate), 'hours');
 
-    let formattedDate = '';
     if (hoursSinceAdded < 24) {
-      formattedDate = `${hoursSinceAdded} hour${hoursSinceAdded !== 1 ? 's' : ''} ago`;
-    } else {
-      const daysSinceAdded = Math.floor(hoursSinceAdded / 24);
-      if (daysSinceAdded < 7) {
-        formattedDate = `${daysSinceAdded} day${daysSinceAdded !== 1 ? 's' : ''} ago`;
-      } else if (daysSinceAdded < 30) {
-        const weeksSinceAdded = Math.floor(daysSinceAdded / 7);
-        formattedDate = `${weeksSinceAdded} week${weeksSinceAdded !== 1 ? 's' : ''} ago`;
-      } else if (daysSinceAdded < 365) {
-        const monthsSinceAdded = Math.floor(daysSinceAdded / 30);
-        formattedDate = `${monthsSinceAdded} month${monthsSinceAdded !== 1 ? 's' : ''} ago`;
-      } else {
-        formattedDate = `${Math.floor(daysSinceAdded / 365)} year${daysSinceAdded !== 1 ? 's' : ''} ago`;
-      }
+      return `${hoursSinceAdded} hour${hoursSinceAdded !== 1 ? 's' : ''} ago`;
     }
-    return formattedDate;
+    const daysSinceAdded = Math.floor(hoursSinceAdded / 24);
+    if (daysSinceAdded < 7) {
+      return `${daysSinceAdded} day${daysSinceAdded !== 1 ? 's' : ''} ago`;
+    } else if (daysSinceAdded < 30) {
+      const weeksSinceAdded = Math.floor(daysSinceAdded / 7);
+      return `${weeksSinceAdded} week${weeksSinceAdded !== 1 ? 's' : ''} ago`;
+    } else if (daysSinceAdded < 365) {
+      const monthsSinceAdded = Math.floor(daysSinceAdded / 30);
+      return `${monthsSinceAdded} month${monthsSinceAdded !== 1 ? 's' : ''} ago`;
+    } else {
+      return `${Math.floor(daysSinceAdded / 365)} year${Math.floor(daysSinceAdded / 365) !== 1 ? 's' : ''} ago`;
+    }
   };
 
   return (
-    <View style={{ flex: 1, marginTop: 40 }}>
-      <View style={{ flexDirection: 'row' }}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.searchContainer}>
         <Image
           source={require('../assets/icons8-search-50.png')}
-          style={{ width: 25, height: 25, marginTop: 5 }}
+          style={styles.searchIcon}
         />
         <TextInput
+          mode="outlined"
           placeholder="Search news..."
           value={searchQuery}
           onChangeText={text => setSearchQuery(text)}
-          style={{ paddingHorizontal: 100, paddingVertical: 1, backgroundColor: '#e8e6e6', marginLeft: 10 }}
+          style={styles.searchInput}
         />
-        <Image source={require('../assets/icons8-money-48.png')} style={{ width: 35, height: 35, marginLeft: 15 }} />
+        <Image source={require('../assets/icons8-money-48.png')} style={styles.moneyIcon} />
       </View>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollView}>
         {filteredNewsData.map(renderNewsItem)}
       </ScrollView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 40,
+    paddingHorizontal: 16,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  searchIcon: {
+    width: 25,
+    height: 25,
+    marginTop: 5,
+  },
+  searchInput: {
+    flex: 1,
+    marginHorizontal: 10,
+    backgroundColor: '#f0f0f0',
+    height: 40,
+  },
+  moneyIcon: {
+    width: 35,
+    height: 35,
+  },
+  scrollView: {
+    paddingBottom: 16,
+  },
+  card: {
+    marginBottom: 20,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  image: {
+    height: 180,
+    width: '100%',
+  },
+  cardContent: {
+    padding: 16,
+    backgroundColor: '#E6EBF9',
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 8,
+    color: '#333',
+  },
+  content: {
+    fontSize: 16,
+    color: '#555',
+    marginBottom: 12,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  date: {
+    fontSize: 12,
+    color: 'gray',
+  },
+  source: {
+    fontSize: 12,
+    color: 'gray',
+  },
+});
 
 export default NewsScreen;
